@@ -20,8 +20,8 @@ import items from '../data/scifi.json'
 
                    return (
                     
-                       <Col xs={6} md={4} lg={3} >
-                            <Card    key={index} >
+                       <Col xs={6} md={4} lg={3} key={libri.asin}  >
+                            <Card     >
                               <Card.Img variant="top" src={libri.img} style={{objectFit: 'cover', height:"50%",width:"100%" }}     />
                               <Card.Body>
                                 <Card.Title style={{overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap"}}>{libri.title}</Card.Title>
@@ -34,7 +34,7 @@ import items from '../data/scifi.json'
                               <Button variant="primary"> compra </Button>
                               </Card.Body>
                             </Card>
-    
+                           
                        </Col>
                        )
 
