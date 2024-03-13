@@ -65,22 +65,87 @@
 // export default SingleBook;
 
 
-import React from "react";
+// import React from "react";
+// import Card from "react-bootstrap/Card";
+// import Col from "react-bootstrap/Col";
+// import Button from "react-bootstrap/Button";
+
+// class SingleBook extends React.Component {
+// // parte selezione onclick card serch
+// // 
+//     state={
+//         selected:false,
+//     }
+//     selectedBook=() =>{
+//         this.setState((prevState)=>({selected: !prevState.selected}));
+//     }
+//   render() {
+//     const { book } = this.props;
+//     const {selected}=this.state;
+//     return (
+//       <Col xs={12} md={6} lg={3} className="my-3" key={book.asin}>
+//         <Card style={{ height: "100%" }}>
+//           <Card.Img variant="top" src={book.img} style={{ height: "15rem", objectFit: "contain" }} 
+          
+//         className={selected ? "selected-card": ""}
+//           onClick={this.selectedBook} 
+//           />
+//           <Card.Body>
+//             <Card.Title>{book.title}</Card.Title>
+//             <Card.Text>{book.price}€</Card.Text>
+//             <Button variant="dark">Acquista</Button>
+//           </Card.Body>
+//         </Card>
+//       </Col>
+//     );
+//   }
+// }
+
+// export default SingleBook;
+
+import { Component } from "react";
+// import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
 
-class SingleBook extends React.Component {
+class SingleBook extends Component {
+  state = {
+    selected: false,
+  };
+
+  selectedBook = () => {
+    this.setState((prevState) => ({
+      selected: !prevState.selected,
+    }));
+  };
+
   render() {
-    const { book } = this.props;
+    const { asin, title, img, price } = this.props;
+    const { selected } = this.state;
+
     return (
-      <Col xs={12} md={6} lg={3} className="my-3" key={book.asin}>
-        <Card style={{ height: "100%" }}>
-          <Card.Img variant="top" src={book.img} style={{ height: "15rem", objectFit: "contain" }} />
-          <Card.Body>
-            <Card.Title>{book.title}</Card.Title>
-            <Card.Text>{book.price}€</Card.Text>
-            <Button variant="dark">Acquista</Button>
+      <Col sm={6} lg={4} xl={3} key={asin}>
+        <Card className="m-auto shadow" style={{ height: "fit-content", width: "300px" }}>
+          <Card.Img
+            variant="top"
+            src={img}
+            alt={title}
+            style={{ objectFit: "cover", height: "400px" }}
+            className={selected ? "selected-card" : ""} //se la foto è selezionata aggiungi la classe selected-car, altrimenti cancellala
+            onClick={this.selectedBook}
+          />
+          <Card.Body className="d-flex flex-column justify-content-around">
+            <Card.Title style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+              {title}
+            </Card.Title>
+            <Card.Text>
+              <p>
+                <span className="fw-bold">Price:</span> {price}$
+              </p>
+            </Card.Text>
+            {/* <Button className="w-50" variant="success">
+              Buy Now
+            </Button> */}
           </Card.Body>
         </Card>
       </Col>
@@ -89,4 +154,3 @@ class SingleBook extends React.Component {
 }
 
 export default SingleBook;
-

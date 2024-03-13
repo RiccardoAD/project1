@@ -29,7 +29,8 @@ function App() {
 
              {/* <BookList listaLibri={Horror}/> */}
              {/* <SingleBook    book={Fantasy[0]}></SingleBook> */}
-       <BookList  books={Horror}/>
+       {/* <BookList  books={Horror}/> */}
+       <BookList />
 
 
 
