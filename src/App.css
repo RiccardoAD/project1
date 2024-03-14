@@ -44,3 +44,25 @@
 img {
   cursor: pointer;
 }
+
+
+.listComments {
+  height: 50vh;
+  overflow: auto;
+}
+
+@media screen and (min-width: 1024px) {
+  .listComments::-webkit-scrollbar {
+    width: 4px;
+    right: -10px;
+  }
+
+  .listComments::-webkit-scrollbar-thumb {
+    background: #00d9d9;
+    border-radius: 20px;
+  }
+  .listComments::-webkit-scrollbar-track {
+    background: rgba(255, 39, 80, 0.1);
+    border-radius: 20px;
+  }
+}

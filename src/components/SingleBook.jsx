@@ -76,8 +76,8 @@
 //     state={
 //         selected:false,
 //     }
-//     selectedBook=() =>{
 //         this.setState((prevState)=>({selected: !prevState.selected}));
+//     selectedBook=() =>{
 //     }
 //   render() {
 //     const { book } = this.props;
@@ -107,6 +107,8 @@ import { Component } from "react";
 // import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
+import  Button from "react-bootstrap/Button";
+import CommentArea from "./CommentArea";
 
 class SingleBook extends Component {
   state = {
@@ -120,10 +122,12 @@ class SingleBook extends Component {
   };
 
   render() {
+    // const [cardSelected, setCardSelected] = useState(false);
     const { asin, title, img, price } = this.props;
     const { selected } = this.state;
 
     return (
+      <>
       <Col sm={6} lg={4} xl={3} key={asin}>
         <Card className="m-auto shadow" style={{ height: "fit-content", width: "300px" }}>
           <Card.Img
@@ -133,7 +137,8 @@ class SingleBook extends Component {
             style={{ objectFit: "cover", height: "400px" }}
             className={selected ? "selected-card" : ""} //se la foto è selezionata aggiungi la classe selected-car, altrimenti cancellala
             onClick={this.selectedBook}
-          />
+            // onClick={() => this.setState({ selected: !this.state.selected })}
+            />
           <Card.Body className="d-flex flex-column justify-content-around">
             <Card.Title style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
               {title}
@@ -143,14 +148,60 @@ class SingleBook extends Component {
                 <span className="fw-bold">Price:</span> {price}$
               </p>
             </Card.Text>
-            {/* <Button className="w-50" variant="success">
-              Buy Now
-            </Button> */}
+
+            {/* <div className="d-flex justify-content-between ">
+             <Button
+              variant={isSelected ? "warning" : "success"}
+              onClick={() => {
+                handleSelected(bookId);
+                setCardSelected(!cardSelected);
+              }}
+            >
+              {isSelected ? "Hide Reviews" : "Show Reviews"}
+            </Button>
+            <Button variant="danger">Buy Now</Button> 
+          </div> */}
+           {this.state.selected === true && <CommentArea asin={this.props.myBook.asin} />}
+           
+          
           </Card.Body>
         </Card>
       </Col>
+            </>
     );
   }
 }
 
-export default SingleBook;
+// export default SingleBook;
+
+
+// import Card from "react-bootstrap/Card";
+// import { Component } from "react";
+// import CommentArea from "./CommentsArea";
+
+// class SingleBook extends Component {
+//   state = {
+//     selected: false,
+//   };
+//   render(props) {
+//     return (
+//       <Card className="m-3" style={{ width: "16em" }} key={this.props.myBook.asin}>
+//         <Card.Img
+//           className="imgCard"
+//           variant="top"
+//           src={this.props.myBook.img}
+//           onClick={() => this.setState({ selected: !this.state.selected })}
+//           style={{ width: "16em", border: this.state.selected ? "3px solid red" : "none" }}
+//         />
+//         <Card.Body>
+//           <Card.Title className="textCard">{this.props.myBook.title}</Card.Title>
+//           <Card.Text>{this.props.myBook.price} €</Card.Text>
+//           <Card.Text>{this.props.myBook.category}</Card.Text>
+//           {this.state.selected === true && <CommentArea asin={this.props.myBook.asin} />}
+//         </Card.Body>
+//       </Card>
+//     );
+//   }
+// }
+
+// export default SingleBook;
